@@ -1,125 +1,14 @@
-<title>Kilden</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Kilden - El yapımı seramik, ahşap ve gümüş ürünler atölyesi">
-<style>
-  :root {
-    --bg: #f7f1e8;
-    --card-bg: #fffaf2;
-    --text: #3b2a1e;
-    --text-muted: #7a6a58;
-    --accent: #b5651d;
-    --accent-dark: #6b4226;
-    --border: #e4d5c1;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: Georgia, 'Times New Roman', serif;
-    line-height: 1.6;
-  }
-
-  header {
-    text-align: center;
-    padding: 64px 24px 40px;
-  }
-
-  header h1 {
-    margin: 0;
-    font-size: 3rem;
-    letter-spacing: 0.04em;
-    color: var(--accent-dark);
-  }
-
-  header p {
-    margin: 12px 0 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.05rem;
-    color: var(--text-muted);
-  }
-
-  main {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 24px 64px;
-  }
-
-  .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-  }
-
-  .product-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 28px 24px;
-    text-align: center;
-  }
-
-  .product-card h2 {
-    margin: 0 0 8px;
-    font-size: 1.4rem;
-    color: var(--accent-dark);
-  }
-
-  .price {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: var(--accent);
-    margin: 0 0 12px;
-  }
-
-  .product-card p.desc {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    margin: 0;
-  }
-
-  footer {
-    text-align: center;
-    padding: 24px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    border-top: 1px solid var(--border);
-  }
-</style>
-
-<header>
-  <h1>Kilden</h1>
-  <p>El Yapımı Seramik ve Doğal Malzeme Atölyesi</p>
-</header>
-
-<main>
-  <div class="products">
-    <div class="product-card">
-      <h2>Seramik Kupa</h2>
-      <p class="price">450 TL</p>
-      <p class="desc">Elde şekillendirilmiş, sırlı seramikten günlük kullanım kupası.</p>
-    </div>
-    <div class="product-card">
-      <h2>Ceviz Kesme Tahtası</h2>
-      <p class="price">620 TL</p>
-      <p class="desc">Doğal ceviz ağacından, özenle işlenmiş mutfak kesme tahtası.</p>
-    </div>
-    <div class="product-card">
-      <h2>Gümüş Kolye</h2>
-      <p class="price">780 TL</p>
-      <p class="desc">925 ayar gümüşten, el işçiliğiyle üretilmiş özgün kolye.</p>
-    </div>
-  </div>
-</main>
-
-<footer>
-  Kilden &copy; 2026
-</footer>
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Kilden - El yapımı seramik, ahşap ve gümüş ürünler atölyesi" />
+    <title>Kilden</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
