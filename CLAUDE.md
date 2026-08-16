@@ -4,7 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Proje Özeti
 
-Kilden, el sanatları/zanaat atölyesi için tek sayfalık tanıtım sitesi. Site şu an tek dosyadan (`index.html`) oluşuyor: CSS `<style>` içinde gömülü, harici bağımlılık veya build/test/lint aracı yok. Değişiklikleri görmek için dosyayı doğrudan tarayıcıda açmak yeterli.
+Kilden, el sanatları/zanaat atölyesi için tek sayfalık tanıtım sitesi. Proje Vite + React (JavaScript, `.jsx` — TypeScript yok) ile kuruludur. Geliştirme için `npm install` ardından `npm run dev`; production build için `npm run build` (çıktı `dist/` klasörüne yazılır).
+
+Bileşen zinciri: `ProductList` → `ProductCard` → `ProductImage`. `ProductList`, `src/data/products.js` içindeki her kayıt için bir `ProductCard` render eder.
+
+Yeni ürün eklemek veya mevcut bir ürünü değiştirmek için düzenlenmesi gereken dosya `src/data/products.js`. Her ürün kaydı şu alanları içermeli: `id, name, category, price, description, icon`.
 
 ## Sektör ve Hedef Kitle
 
