@@ -1,7 +1,11 @@
 import { useState } from "react";
 import ProductList from "./components/ProductList";
 import StockNotifyForm from "./components/StockNotifyForm";
+import CatalogQrCode from "./components/CatalogQrCode";
 import { products } from "./data/products";
+
+// TODO: Site canliya alindiginda gercek domain ile guncellenecek (gecici olarak repo adresine yonlendiriyor).
+const CATALOG_QR_URL = "https://github.com/benlimerve-web/AtolyeKart";
 
 export default function App() {
   const [showStockForm, setShowStockForm] = useState(false);
@@ -15,6 +19,8 @@ export default function App() {
 
       <main>
         <ProductList />
+
+        <CatalogQrCode url={CATALOG_QR_URL} />
 
         <section className="stock-notify">
           {showStockForm ? (
