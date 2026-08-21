@@ -4,8 +4,7 @@ import StockNotifyForm from "./components/StockNotifyForm";
 import CatalogQrCode from "./components/CatalogQrCode";
 import { products } from "./data/products";
 
-// TODO: Site canliya alindiginda gercek domain ile guncellenecek (gecici olarak repo adresine yonlendiriyor).
-const CATALOG_QR_URL = "https://github.com/benlimerve-web/AtolyeKart";
+const CATALOG_QR_URL = "https://atolyekart-three.vercel.app";
 
 export default function App() {
   const [showStockForm, setShowStockForm] = useState(false);
