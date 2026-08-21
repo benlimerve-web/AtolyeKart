@@ -45,6 +45,30 @@ main {
   padding: 0 24px 64px;
 }
 
+.category-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 32px;
+}
+
+.category-filters button {
+  background: var(--card-bg);
+  color: var(--accent-dark);
+  border: 1px solid var(--border);
+}
+
+.category-filters button:hover {
+  background: var(--border);
+}
+
+.category-filters button.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
