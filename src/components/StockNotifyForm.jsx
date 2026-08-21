@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { sendToWebhook } from "../lib/webhook";
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default function StockNotifyForm({ products }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,6 +12,13 @@ export default function StockNotifyForm({ products }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (!EMAIL_PATTERN.test(email.trim())) {
+      setStatus("error");
+      setError("Lütfen geçerli bir e-posta adresi girin.");
+      return;
+    }
+
     setStatus("sending");
     setError("");
 
