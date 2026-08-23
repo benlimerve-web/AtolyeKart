@@ -4,6 +4,7 @@ import { sendToWebhook } from "../lib/webhook";
 export default function OrderForm({ productName }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
   const [error, setError] = useState("");
 
@@ -55,7 +56,17 @@ export default function OrderForm({ productName }) {
           required
         />
       </label>
-      <button type="submit" disabled={status === "sending"}>
+      <label className="consent-label">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          required
+        />
+        Adım, telefon numaram ve sipariş bilgilerimin bu talebi işlemek amacıyla
+        işlenmesini kabul ediyorum.
+      </label>
+      <button type="submit" disabled={status === "sending" || !consent}>
         {status === "sending" ? "Gönderiliyor..." : "Gönder"}
       </button>
       {status === "error" && <p className="form-error">{error}</p>}
