@@ -1,20 +1,33 @@
-// Sipariş Ver ve Stok Bildirimi Iste formlarının gönderim yaptığı ortak webhook.
+// Sipariş Ver ve Stok Bildirimi Iste formlarının gönderim yaptığı ortak endpoint.
 // Payload formatı için bkz. .claude/skills/atolyekart-conventions/SKILL.md
-export const WEBHOOK_URL = "https://webhook.site/1e3b9476-3139-48f5-a235-ca8c2e8fdfc3";
+// Gerçek webhook URL'i client'a hiç gömülmez; /api/order sunucu tarafında
+// WEBHOOK_URL'e (env) POST eder. Bu istek JWT (VITE_API_TOKEN) ile korunur.
+const API_TOKEN = import.meta.env.VITE_API_TOKEN;
 
 export async function sendToWebhook(payload) {
+  if (!API_TOKEN) {
+    console.error("VITE_API_TOKEN tanımlı değil. .env dosyasını kontrol edin (bkz. .env.example).");
+    return { ok: false, error: "Bağlantı hatası, lütfen tekrar deneyin." };
+  }
+
   try {
-    // no-cors: webhook.site CORS preflight/response header'ı dönmediği için
-    // response opak gelir (status/body okunamaz). Bu yüzden response.ok
-    // kontrolü yapılmıyor — fetch throw etmeden tamamlandıysa başarı sayılır.
-    await fetch(WEBHOOK_URL, {
+    const response = await fetch("/api/order", {
       method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${API_TOKEN}`,
+      },
       body: JSON.stringify(payload),
     });
 
-    return { ok: true };
+    if (!response.ok) {
+      return { ok: false, error: "Bağlantı hatası, lütfen tekrar deneyin." };
+    }
+
+    const result = await response.json();
+    return result.ok
+      ? { ok: true }
+      : { ok: false, error: "Bağlantı hatası, lütfen tekrar deneyin." };
   } catch {
     return { ok: false, error: "Bağlantı hatası, lütfen tekrar deneyin." };
   }
