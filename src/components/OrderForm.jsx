@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { sendToWebhook } from "../lib/webhook";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 export default function OrderForm({ productName }) {
   const [name, setName] = useState("");
@@ -7,6 +8,7 @@ export default function OrderForm({ productName }) {
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
   const [error, setError] = useState("");
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -30,6 +32,10 @@ export default function OrderForm({ productName }) {
 
   if (status === "success") {
     return <p className="form-success">Talebiniz alındı, teşekkürler!</p>;
+  }
+
+  if (showPrivacyPolicy) {
+    return <PrivacyPolicy onBack={() => setShowPrivacyPolicy(false)} />;
   }
 
   return (
@@ -64,7 +70,15 @@ export default function OrderForm({ productName }) {
           required
         />
         Adım, telefon numaram ve sipariş bilgilerimin bu talebi işlemek amacıyla
-        işlenmesini kabul ediyorum.
+        işlenmesini kabul ediyorum. (
+        <button
+          type="button"
+          className="link-button"
+          onClick={() => setShowPrivacyPolicy(true)}
+        >
+          Gizlilik Politikası
+        </button>
+        )
       </label>
       <button type="submit" disabled={status === "sending" || !consent}>
         {status === "sending" ? "Gönderiliyor..." : "Gönder"}
