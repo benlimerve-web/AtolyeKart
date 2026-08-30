@@ -76,8 +76,13 @@ export default async function handler(req, res) {
       body: JSON.stringify(req.body),
     });
 
+    if (!webhookResponse.ok) {
+      console.error(`Webhook isteği başarısız oldu. Status: ${webhookResponse.status}`);
+    }
+
     return res.status(200).json({ ok: webhookResponse.ok });
-  } catch {
+  } catch (error) {
+    console.error(`Webhook isteğinde hata: ${error.message}. Status: ${error.status ?? "yok"}`);
     return res.status(502).json({ ok: false, error: "Bağlantı hatası, lütfen tekrar deneyin." });
   }
 }
