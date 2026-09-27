@@ -1,0 +1,16 @@
+/* Sohbet widget'ını Kilden renklerine uyarlar */
+:root {
+  --chat--color-primary: #b5651d;
+  --chat--color-primary-shade-50: #9c5518;
+  --chat--color-primary-shade-100: #834613;
+  --chat--color-secondary: #8b5a2b;
+  --chat--header--background: #5c3a1e;
+  --chat--header--color: #fdf8f0;
+  --chat--toggle--background: #b5651d;
+  --chat--toggle--hover--background: #9c5518;
+  --chat--toggle--active--background: #834613;
+  --chat--message--user--background: #b5651d;
+  --chat--message--user--color: #ffffff;
+  --chat--window--width: 380px;
+  --chat--window--height: 560px;
+}

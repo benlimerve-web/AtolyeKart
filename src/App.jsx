@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProductList from "./components/ProductList";
 import StockNotifyForm from "./components/StockNotifyForm";
 import CatalogQrCode from "./components/CatalogQrCode";
+import ChatWidget from "./components/ChatWidget";
 import { products } from "./data/products";
 
 const CATALOG_QR_URL = "https://atolyekart-three.vercel.app";
@@ -31,6 +32,8 @@ export default function App() {
           )}
         </section>
       </main>
+
+      <ChatWidget />
 
       <footer>
         Kilden &copy; 2026
