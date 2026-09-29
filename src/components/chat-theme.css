@@ -1,4 +1,4 @@
-/* Sohbet widget'ını Kilden renklerine uyarlar */
+/* Sohbet widget'ını Kilden renklerine ve ölçülerine uyarlar */
 :root {
   --chat--color-primary: #b5651d;
   --chat--color-primary-shade-50: #9c5518;
@@ -11,6 +11,23 @@
   --chat--toggle--active--background: #834613;
   --chat--message--user--background: #b5651d;
   --chat--message--user--color: #ffffff;
-  --chat--window--width: 380px;
-  --chat--window--height: 560px;
+
+  --chat--window--width: 400px;
+  --chat--window--height: min(680px, 80vh);
+
+  --chat--header-height: auto;
+  --chat--header--padding: 12px 16px;
+  --chat--heading--font-size: 1.2em;
+  --chat--subtitle--font-size: 0.85em;
+  --chat--subtitle--line-height: 1.4;
+
+  --chat--message--font-size: 0.95rem;
+  --chat--message-line-height: 1.5;
+}
+
+.chat-header h1 {
+  margin: 0 0 4px 0;
+}
+.chat-header p {
+  margin: 0;
 }
