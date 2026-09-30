@@ -9,7 +9,7 @@ import "./chat-theme.css";
 import { createChat } from "@n8n/chat";
 
 const CHAT_URL =
-  "https://coated-landscape-amber-producing.trycloudflare.com/webhook/0c57d202-df41-4e59-a7fc-8a4f5d002b8e/chat";
+  "https://extra-consciousness-black-notebooks.trycloudflare.com/webhook/0c57d202-df41-4e59-a7fc-8a4f5d002b8e/chat";
 
 export default function ChatWidget() {
   useEffect(() => {
