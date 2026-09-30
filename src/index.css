@@ -1,11 +1,33 @@
 :root {
-  --bg: #f7f1e8;
-  --card-bg: #fffaf2;
-  --text: #3b2a1e;
-  --text-muted: #7a6a58;
-  --accent: #b5651d;
-  --accent-dark: #6b4226;
-  --border: #e4d5c1;
+  /* Renkler */
+  --renk-ana: #6b4226;          /* koyu kahve: başlıklar, vurgulu yazılar */
+  --renk-vurgu: #b5651d;        /* turuncu-kahve: butonlar, fiyatlar */
+  --renk-zemin: #f7f1e8;        /* krem: sayfa arka planı */
+  --renk-kart: #fffaf2;         /* kart arka planı */
+  --renk-kenarlik: #e4d5c1;     /* kenarlıklar, ayırıcılar */
+  --renk-metin: #3b2a1e;        /* gövde metni */
+  --renk-metin-soluk: #7a6a58;  /* açıklama metinleri */
+  --renk-beyaz: #ffffff;
+  --renk-hata: var(--renk-hata);
+
+  /* Fontlar */
+  --font-baslik: 'Cormorant Garamond', Georgia, serif;
+  --font-metin: 'Inter', Arial, sans-serif;
+
+  /* Boşluklar (4 ve 8'in katları) */
+  --bosluk-2xs: 4px;
+  --bosluk-xs: 8px;
+  --bosluk-sm: 12px;
+  --bosluk-s: 16px;
+  --bosluk-m: 24px;
+  --bosluk-ml: 32px;
+  --bosluk-l: 48px;
+  --bosluk-2xl: 64px;
+  --bosluk-xl: 96px;
+
+  /* Köşe yuvarlaklığı */
+  --kose-s: 6px;
+  --kose: 12px;
 }
 
 * {
@@ -14,227 +36,306 @@
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--renk-zemin);
+  color: var(--renk-metin);
+  font-family: var(--font-metin);
   line-height: 1.6;
 }
 
-header {
+html {
+  scroll-behavior: smooth;
+}
+
+.hero {
+  position: relative;
+  max-width: 1100px;
+  min-height: 440px;
+  margin: var(--bosluk-m) auto var(--bosluk-l);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 64px 24px 40px;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--kose);
+  overflow: hidden;
 }
 
-header h1 {
+/* Açık tonlu görselde beyaz yazının okunması için koyu geçiş katmanı */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(59, 42, 30, 0.25),
+    rgba(59, 42, 30, 0.6)
+  );
+}
+
+.hero-content {
+  position: relative;
+  padding: var(--bosluk-l) var(--bosluk-m);
+}
+
+.hero h1 {
+  font-family: var(--font-baslik);
   margin: 0;
-  font-size: 3rem;
+  font-size: 4.5rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  color: var(--accent-dark);
+  color: var(--renk-beyaz);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
-header p {
-  margin: 12px 0 0;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.05rem;
-  color: var(--text-muted);
+.hero p {
+  margin: var(--bosluk-xs) 0 var(--bosluk-m);
+  font-family: var(--font-metin);
+  font-size: 1.15rem;
+  color: var(--renk-beyaz);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-button {
+  display: inline-block;
+  font-family: var(--font-metin);
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: var(--renk-vurgu);
+  color: var(--renk-beyaz);
+  text-decoration: none;
+  border-radius: var(--kose-s);
+  padding: var(--bosluk-sm) var(--bosluk-m);
+  transition: background 0.2s;
+}
+
+.hero-button:hover {
+  background: var(--renk-ana);
+}
+
+@media (max-width: 1148px) {
+  .hero {
+    margin-left: var(--bosluk-m);
+    margin-right: var(--bosluk-m);
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 320px;
+    margin: var(--bosluk-s);
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
 }
 
 main {
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 24px 64px;
+  padding: 0 var(--bosluk-m) var(--bosluk-2xl);
 }
 
 .category-filters {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 12px;
-  margin: 0 0 32px;
+  gap: var(--bosluk-sm);
+  margin: 0 0 var(--bosluk-ml);
 }
 
 .category-filters button {
-  background: var(--card-bg);
-  color: var(--accent-dark);
-  border: 1px solid var(--border);
+  background: var(--renk-kart);
+  color: var(--renk-ana);
+  border: 1px solid var(--renk-kenarlik);
 }
 
 .category-filters button:hover {
-  background: var(--border);
+  background: var(--renk-kenarlik);
 }
 
 .category-filters button.active {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
+  background: var(--renk-vurgu);
+  color: var(--renk-beyaz);
+  border-color: var(--renk-vurgu);
 }
 
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
+  gap: var(--bosluk-m);
 }
 
 .product-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 28px 24px;
+  background: var(--renk-kart);
+  border: 1px solid var(--renk-kenarlik);
+  border-radius: var(--kose);
+  padding: var(--bosluk-ml) var(--bosluk-m);
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-image {
   width: 96px;
   height: 96px;
-  margin: 0 auto 16px;
+  margin: 0 auto var(--bosluk-s);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--border);
+  background: var(--renk-kenarlik);
   border-radius: 50%;
   font-size: 2.5rem;
-  color: var(--accent-dark);
+  color: var(--renk-ana);
 }
 
 .product-card h2 {
-  margin: 0 0 8px;
+  font-family: var(--font-baslik);
+  margin: 0 0 var(--bosluk-xs);
   font-size: 1.4rem;
-  color: var(--accent-dark);
+  color: var(--renk-ana);
 }
 
 .price {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-metin);
   font-weight: bold;
   font-size: 1.2rem;
-  color: var(--accent);
-  margin: 0 0 12px;
+  color: var(--renk-vurgu);
+  margin: 0 0 var(--bosluk-sm);
 }
 
 .product-card p.desc {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-metin);
   font-size: 0.95rem;
-  color: var(--text-muted);
+  color: var(--renk-metin-soluk);
   margin: 0;
 }
 
 footer {
   text-align: center;
-  padding: 24px;
-  font-family: Arial, Helvetica, sans-serif;
+  padding: var(--bosluk-m);
+  font-family: var(--font-metin);
   font-size: 0.85rem;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border);
+  color: var(--renk-metin-soluk);
+  border-top: 1px solid var(--renk-kenarlik);
 }
 
 button {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-metin);
   font-size: 0.95rem;
-  background: var(--accent);
-  color: #fff;
+  background: var(--renk-vurgu);
+  color: var(--renk-beyaz);
   border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
+  border-radius: var(--kose-s);
+  padding: var(--bosluk-sm) var(--bosluk-m);
   cursor: pointer;
 }
 
 button:hover {
-  background: var(--accent-dark);
+  background: var(--renk-ana);
 }
 
 button:disabled {
-  background: var(--border);
-  color: var(--text-muted);
+  background: var(--renk-kenarlik);
+  color: var(--renk-metin-soluk);
   cursor: not-allowed;
 }
 
-.product-card button {
-  margin-top: 8px;
+.product-card p.desc {
+  flex-grow: 1;
+}
+
+/* Sipariş Ver butonu: yatayda ortalı, tüm kartlarda aynı hizada (en altta) */
+.product-card > button {
+  margin-top: var(--bosluk-s);
+  align-self: center;
 }
 
 .inline-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 16px;
+  gap: var(--bosluk-sm);
+  margin-top: var(--bosluk-s);
   text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-metin);
 }
 
 .inline-form label {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--bosluk-2xs);
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: var(--renk-metin-soluk);
 }
 
 .inline-form input,
 .inline-form select {
   font-family: inherit;
   font-size: 0.95rem;
-  padding: 8px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: #fff;
-  color: var(--text);
+  padding: var(--bosluk-xs) var(--bosluk-sm);
+  border: 1px solid var(--renk-kenarlik);
+  border-radius: var(--kose-s);
+  background: var(--renk-beyaz);
+  color: var(--renk-metin);
 }
 
 .form-success {
-  margin-top: 16px;
-  color: var(--accent-dark);
+  margin-top: var(--bosluk-s);
+  color: var(--renk-ana);
   font-weight: bold;
 }
 
 .form-error {
   margin: 0;
-  color: #a13d3d;
+  color: var(--renk-hata);
   font-size: 0.85rem;
 }
 
 .catalog-qr {
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
+  margin-top: var(--bosluk-l);
+  padding-top: var(--bosluk-ml);
+  border-top: 1px solid var(--renk-kenarlik);
   text-align: center;
 }
 
 .catalog-qr svg {
-  background: #fff;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  background: var(--renk-beyaz);
+  padding: var(--bosluk-sm);
+  border: 1px solid var(--renk-kenarlik);
+  border-radius: var(--kose);
 }
 
 .catalog-qr p {
-  margin: 12px 0 0;
-  font-family: Arial, Helvetica, sans-serif;
+  margin: var(--bosluk-sm) 0 0;
+  font-family: var(--font-metin);
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: var(--renk-metin-soluk);
 }
 
 .stock-notify {
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
+  margin-top: var(--bosluk-l);
+  padding-top: var(--bosluk-ml);
+  border-top: 1px solid var(--renk-kenarlik);
   text-align: center;
 }
 
 .stock-notify .inline-form {
   max-width: 320px;
-  margin: 16px auto 0;
+  margin: var(--bosluk-s) auto 0;
 }
 
 .inline-form .consent-label {
   flex-direction: row;
   align-items: flex-start;
-  gap: 8px;
+  gap: var(--bosluk-xs);
 }
 
 .link-button {
   background: none;
   border: none;
   padding: 0;
-  color: var(--accent);
+  color: var(--renk-vurgu);
   text-decoration: underline;
   font-size: inherit;
   font-family: inherit;
@@ -243,29 +344,30 @@ button:disabled {
 
 .link-button:hover {
   background: none;
-  color: var(--accent-dark);
+  color: var(--renk-ana);
 }
 
 .privacy-policy {
   text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-metin);
   font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-top: 16px;
+  color: var(--renk-metin-soluk);
+  margin-top: var(--bosluk-s);
 }
 
 .privacy-policy h2 {
-  color: var(--accent-dark);
+  font-family: var(--font-baslik);
+  color: var(--renk-ana);
   font-size: 1.1rem;
-  margin: 0 0 12px;
+  margin: 0 0 var(--bosluk-sm);
 }
 
 .privacy-policy h3 {
-  color: var(--accent-dark);
+  color: var(--renk-ana);
   font-size: 0.95rem;
-  margin: 16px 0 4px;
+  margin: var(--bosluk-s) 0 var(--bosluk-2xs);
 }
 
 .privacy-policy button {
-  margin-top: 16px;
+  margin-top: var(--bosluk-s);
 }

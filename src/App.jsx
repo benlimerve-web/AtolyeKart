@@ -6,18 +6,27 @@ import ChatWidget from "./components/ChatWidget";
 import { products } from "./data/products";
 
 const CATALOG_QR_URL = "https://atolyekart-three.vercel.app";
+const HERO_IMAGE = "/images/Gemini_Generated_Image_a78khta78khta78k.webp";
 
 export default function App() {
   const [showStockForm, setShowStockForm] = useState(false);
 
   return (
     <>
-      <header>
-        <h1>Kilden</h1>
-        <p>El Yapımı Seramik ve Doğal Malzeme Atölyesi</p>
+      <header
+        className="hero"
+        style={{ backgroundImage: `url(${HERO_IMAGE})` }}
+      >
+        <div className="hero-content">
+          <h1>Kilden</h1>
+          <p>El Yapımı Seramik ve Doğal Malzeme Atölyesi</p>
+          <a href="#urunler" className="hero-button">
+            Ürünleri Keşfet
+          </a>
+        </div>
       </header>
 
-      <main>
+      <main id="urunler">
         <ProductList />
 
         <CatalogQrCode url={CATALOG_QR_URL} />
